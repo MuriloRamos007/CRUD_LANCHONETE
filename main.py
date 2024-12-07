@@ -1,16 +1,20 @@
-from database.conector import Conector
-from controllers.produto_controller import Produto_Controller
+import flet as ft
+from view.produto_view import produto_view
 
-conexao = Conector.conectar()
+def main(Page: ft.Page):
+    Page.title = "Lanchonete do Taboca"
+    Page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
+    Page.scroll = ft.ScrollMode.AUTO
 
-if conexao!=None:
-    print("Conectado com o banco de dados")
-  
-    produtos =  Produto_Controller.buscar(conexao, "X")
-    if produtos!=[]:
-        for produto in produtos:
-            produto.listar()
-    else:
-        print("Nenhum produto encontrado!")
-    
-    Conector.fechar_conexao(conexao)
+    def chama_produto(e):
+        coluna = produto_view(Page)
+        Page.clean()
+        Page.add(coluna)
+
+    Page.add(
+        ft.ElevatedButton(
+            "Produtos", 
+            on_click=chama_produto)
+        )
+
+ft.app(main)
