@@ -1,9 +1,15 @@
 import mysql.connector
+import os
+from dotenv import load_dotenv
 
-user = "root"
-senha = ""
-host = "localhost"
-banco = "lanchonete"
+
+load_dotenv()
+db_user = os.getenv("DB_USER")
+db_password = os.getenv("DB_PASSWORD")
+db_host = os.getenv("DB_HOST")
+db_name = os.getenv("DB_NAME")
+
+
 
 class Conector:
     
@@ -12,11 +18,12 @@ class Conector:
         conexao=None
         try:
             conexao =  mysql.connector.connect(
-                host=host,
-                user=user,
-                password=senha,
-                database=banco
+                host=db_host,
+                user=db_user,
+                password=db_password,
+                database=db_name
             )
+            print("Conexão com o BD estabelecida!")
         except mysql.connector.Error as e:
             print(f"Erro ao conectar com o BD:{e}")
 

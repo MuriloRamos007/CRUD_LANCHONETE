@@ -1,15 +1,13 @@
 class Cliente:
 
-    def __init__(self, parCod, parNome, parCpf, parendereco, parTelefone):
-        self.cod=parCod
-        self.Nome=parNome
-        self.Cpf=parCpf
-        self.endereco=parendereco
-        self.Telefone=parTelefone
+    def __init__(self, cpf, nome, telefone, endereco) -> None:
+        self.nome=nome
+        self.cpf=cpf
+        self.telefone=telefone
+        self.endereco=endereco
 
-    def Listar(self):
-        print(f"Cod.: {self.cod}"
-              f"| Nome: {self.Nome}"
-              f"| Cpf: {self.Cpf}"
-              f"| Endereço: {self.endereco}"
-              f"| Telefone: {self.Telefone}")
+    def imprimir(self):
+         print(  f" cpf: {self.cpf}"+
+                f" | Nome: {self.nome[:20]:<20}"
+                f" | Telefone: {self.telefone}"+
+                f" | endereço: {self.endereco}")
